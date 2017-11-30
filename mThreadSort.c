@@ -1,4 +1,11 @@
+    /////////////////////////////////////////////////////////////
+   ////                                                    /////
+  //// ***Sorting Array With Multi Threading Technique*** /////
+ ////                                                    /////
+/////////////////////////////////////////////////////////////
+ 
 #include <stdio.h>
+#include <stdint.h> //Include this header file for use intptr_t
 #include <stdlib.h>
 #include <pthread.h>
 
@@ -7,8 +14,8 @@ int sortedArray[8]; // Sorted array
 
 void *Sort(void *num)
 {
-	int *i;
-	i = (int *)num;
+	int i;
+	i = (intptr_t) num;
 	int j; //Index of array
 	int counter; //This is show how many number lower than each element array
 
@@ -31,7 +38,7 @@ int main(int argc, char *argv[])
 	for (int i=0; i<8; i++)
 	{
 
-		pthread_create(&thread_sorting[i], NULL, Sort, (void*) i); // create threads
+		pthread_create(&thread_sorting[i], NULL, Sort, (void *) (intptr_t) i); // create threads, I use (intptr_t) for prevention segmentation fault.
 	}
 
 	for (int i=0; i<8; i++)
