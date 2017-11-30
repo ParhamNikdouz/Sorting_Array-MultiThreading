@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
 
 		pthread_create(&thread_sorting[i], NULL, Sort, (void *) (intptr_t) i); // create threads, I use (intptr_t) for prevention segmentation fault.
 	}
-
+	
+	printf("%s \n", "Sorted array:");
 	for (int i=0; i<8; i++)
 	{
 
